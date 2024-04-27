@@ -1,10 +1,7 @@
-import Image from "next/image";
-import logo from "../public/assets/logo.png";
-
 export default function Footer() {
   return (
-    <footer>
-      <h1>Tyee Calendar</h1>
+    <footer className="bg-gray-200 p-4 text-center mt-6">
+      <h1 className="text-xl text-center">Tyee Calendar</h1>
     </footer>
   );
 }
