@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "../components/SessionProvider";
-import Navbar from "../components/Navbar.tsx"
-import Footer from "../components/Footer.tsx"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import { getServerSession } from "next-auth";
 
 

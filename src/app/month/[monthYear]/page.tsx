@@ -2,32 +2,11 @@ import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
 import CalendarDay from "@/components/CalendarDay";
 
-const Month: FC = async () => {
+const Month: FC = async ({ params }) => {
   await connectToDataBase();
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
-
-  const numToMonth = {
-    0: "Jan",
-    1: "Feb",
-    2: "Mar",
-    3: "Apr",
-    4: "May",
-    5: "Jun",
-    6: "Jul",
-    7: "Aug",
-    8: "Sep",
-    9: "Oct",
-    10: "Nov",
-    11: "Dec",
-  };
-
   const days = await TyeeCalendarDay.find({
-    monthYear: `${numToMonth[currentMonth]} ${currentYear}`,
+    monthYear: params.monthYear.replace("%20", " "),
   });
-  if (days.length === 0) {
-    return <div>Something went wrong</div>;
-  }
   days.forEach((day) => console.log(day.dayName));
   const date = new Date();
   let daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
