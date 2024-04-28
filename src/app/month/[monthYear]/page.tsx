@@ -1,12 +1,14 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
-import CalendarDay from "@/components/CalendarDay";
-
+import Link from "next/link";
 const Month: FC = async ({ params }) => {
   await connectToDataBase();
   const days = await TyeeCalendarDay.find({
     monthYear: params.monthYear.replace("%20", " "),
   });
+  if (days.length === 0) {
+    return <div>404 Month not found</div>;
+  }
   days.forEach((day) => console.log(day.dayName));
   const date = new Date();
   let daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
@@ -31,13 +33,13 @@ const Month: FC = async ({ params }) => {
   startDay--;
   let table = [];
   for (let i = 0; i < startDay; i++) {
-    table.push("");
+    table.push(["", ""]);
   }
   for (let j = 0; j < parseInt(days[0].dayName.split(" ")[1]); j++) {
-    table.push("");
+    table.push(["", ""]);
   }
   for (let day of days) {
-    table.push(day.dayName.split(" ")[1]);
+    table.push([day.dayName.split(" ")[1], day.dayName]);
   }
 
   return (
@@ -48,21 +50,23 @@ const Month: FC = async ({ params }) => {
         {daysOfWeek.map((day, index) => (
           <div
             key={index}
-            className="p-2 w-auto h-20 bg-blue-100 rounded-lg flex items-center justify-center font-bold"
+            className="p-2 w-auto h-20 bg-gray-100 rounded-lg flex items-center justify-center font-bold"
           >
             {day}
           </div>
         ))}
         {table.map((day, index) => (
-          <div
-            key={index}
-            className="p-2 w-auto h-20 bg-blue-100 rounded-lg flex items-center justify-center font-bold hover:bg-blue-200 hover:scale-105 transition-transform relative"
-          >
-            {day}
-            <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
-              <span>!</span>
-            </span>
-          </div>
+          <Link href={day[0] === "" ? "" : `/day/${day[1]}`}>
+            <div
+              key={index}
+              className="p-2 w-auto h-20 bg-gray-100 rounded-lg flex items-center justify-center font-bold hover:bg-gray-200 hover:scale-105 transition-transform relative"
+            >
+              {day[0]}
+              <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
+                <span>!</span>
+              </span>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

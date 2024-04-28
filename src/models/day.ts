@@ -10,6 +10,17 @@ const DaySchema = new Schema({
   dayName: {
     type: String,
   },
+  events: {
+    type: Array,
+    default: [
+      {
+        title: String,
+        description: String,
+        time: String,
+        location: String,
+      },
+    ],
+  },
 });
 
 const TyeeCalendarDay = models.Day || model("Day", DaySchema);

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionProvider from "../components/SessionProvider";
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { getServerSession } from "next-auth";
-
+import NotiHandler from "@/components/NotiHandler";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,13 +23,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-    <body className={inter.className}>
-      <SessionProvider session={session}>
-        <Navbar />
-        {children}
-        <Footer />
-      </SessionProvider>
-    </body>
-  </html>
+      <body className={inter.className}>
+        <SessionProvider session={session}>
+          <NotiHandler />
+          <Navbar />
+          {children}
+          <Footer />
+        </SessionProvider>
+      </body>
+    </html>
   );
 }

@@ -28,6 +28,13 @@ export async function GET(req: Request) {
         dayOfWeek: day.dayOfWeek,
         monthYear: day.monthYear,
         dayName: day.dayName,
+        events: [{
+          name: "test",
+          timeStart: "Start Time",
+          timeEnd: "End Time",
+          location: "Location",
+          description: "Description"
+        }],
       });
       await newDay.save();
     }
