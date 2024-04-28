@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function CreateEvent() {
+export default function CreateEvent({ day }) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [eventName, setEventName] = useState("");
@@ -30,22 +30,20 @@ export default function CreateEvent() {
     const response = await fetch("/api/createEvent", {
       method: "POST",
       body: JSON.stringify({
-        startTime,
-        endTime,
-        eventName,
-        eventLocation,
-        eventDescription,
-        eventTags,
+        startTime: startTime,
+        endTime: endTime,
+        eventName: eventName,
+        eventLocation: eventLocation,
+        eventDescription: eventDescription,
+        eventTags: eventTags,
+        day,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    if (response.ok) {
-      console.log("Event Created");
-    } else {
-      console.log("Event not created");
-    }
+    const data = await response.json();
+    alert(data.text);
   }
 
   return (

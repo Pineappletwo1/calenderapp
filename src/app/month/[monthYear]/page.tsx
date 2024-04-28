@@ -26,6 +26,21 @@ const Month: FC = async ({ params }) => {
     Nov: 10,
     Dec: 11,
   };
+  let numToMonth = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sep",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec",
+  };
+
   let startDay = new Date(
     parseInt(days[0].monthYear.split(" ")[1]),
     monthToNum[days[0].monthYear.split(" ")[0]]
@@ -42,9 +57,21 @@ const Month: FC = async ({ params }) => {
     table.push([day.dayName.split(" ")[1], day.dayName]);
   }
 
+  
+
   return (
     <div className="p-4 px-6">
-      <h1 className="mt-4 text-4xl font-bold mb-4">Upcoming Events</h1>
+      <div className="flex items-center">
+        <h1 className="mt-4 text-4xl font-bold mb-4 items-center ">
+          Upcoming Events
+        </h1>
+        <Link
+          href={`/month/${days[0].monthYear.split(" ")[0]}`}
+          className="ml-auto text-2xl px-4 py-2 bg-blue-500 text-white  rounded h-auto"
+        >
+          Next Month
+        </Link>
+      </div>
 
       <div className="grid grid-flow-row grid-cols-7 gap-4 w-full h-full bg-white rounded-lg shadow-lg py-4">
         {daysOfWeek.map((day, index) => (

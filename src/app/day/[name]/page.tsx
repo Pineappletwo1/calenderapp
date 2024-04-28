@@ -24,7 +24,7 @@ export default async function Day({ params }) {
         </ul>
       </div>
       <div className="w-1/3">
-        <CreateEvent />
+        <CreateEvent day={params.name} />
       </div>
     </div>
   );
