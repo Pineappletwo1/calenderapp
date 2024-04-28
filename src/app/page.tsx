@@ -12,8 +12,8 @@ export default function Home() {
           <h1 className="text-2xl bg-gray-100 p-6">Get Push Notifications</h1>
           <p className="p-6 text-lg">
             We all know the biggest problem with planners is that you forget to
-            check them, so we'll send you reminders. Computer, phone, we know
-            you're on one of them.
+            check them, so we&apos;ll send you reminders. Computer, phone, we know
+            you&apos;re on one of them.
           </p>
         </div>
         <div className=" shadow-lg">
@@ -27,8 +27,8 @@ export default function Home() {
         <div className=" shadow-lg">
           <h1 className="text-2xl bg-gray-100 p-6">Big Tyee Community</h1>
           <p className="p-6 text-lg">
-            Don't forget that there are hundreds of other students at Tyee, and
-            they all contribute to the calendar and ensure that it's up to date.
+            Don&apos;t forget that there are hundreds of other students at Tyee, and
+            they all contribute to the calendar and ensure that it&apos;s up to date.
             Join the community and help us make the calendar better!
           </p>
         </div>

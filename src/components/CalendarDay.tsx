@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export default function ({ index, day }) {
+const CalendarDay = ({ index, day }) => {
   const [show, setShow] = useState(false);
   return (
     <div
@@ -16,3 +16,7 @@ export default function ({ index, day }) {
     </div>
   );
 }
+
+CalendarDay.displayName = 'CalendarDay';
+
+export default CalendarDay;
