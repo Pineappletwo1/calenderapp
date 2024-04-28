@@ -9,6 +9,8 @@ export default function NavBar() {
   const { data: session } = useSession();
   const [active, setActive] = useState(false);
   const [selection, setSelection] = useState(false);
+  const [show, setShow] = useState(false);
+
   return (
     <nav className="flex gap-4 p-4 px-6 items-center shadow-lg">
       <Link href="/">
@@ -16,11 +18,46 @@ export default function NavBar() {
           Tyee Calendar
         </h1>
       </Link>
-      <Link href="/month">
-        <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
-          Current Month
-        </h1>
-      </Link>
+      <div className="relative">
+        <Link href="/month">
+          <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
+            Current Month
+          </h1>
+        </Link>
+        {show && (
+          <div className="absolute top-full flex flex-col bg-white">
+            <Link href="/dashboard">
+              <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
+                Dashboard
+              </h1>
+            </Link>
+            <Link href="/day">
+              <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
+                Current Day
+              </h1>
+            </Link>
+            <Link href="/subscribe-tags">
+              <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
+                Tag Management
+              </h1>
+            </Link>
+          </div>
+        )}
+      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        viewBox="0 0 16 16"
+        className={`cursor-pointer ${show ? "rotate-180" : ""}`}
+        onClick={() => setShow(!show)}
+      >
+        <path
+          fillRule="evenodd"
+          d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
       <div className=" grow mx-16 relative">
         <input
           type="text"

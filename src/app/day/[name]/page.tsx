@@ -1,6 +1,7 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
 import CreateEvent from "@/components/CreateEvent";
+import Link from "next/link";
 
 export default async function Day({ params }) {
   await connectToDataBase();
@@ -24,22 +25,27 @@ export default async function Day({ params }) {
           {day.dayOfWeek}, {day.dayName}
         </h1>
         {events.map((event, i) => (
-          <div key={i} className="p-4 bg-gray-200 rounded-lg mt-4 w-4/5">
-            <h2 className="text-2xl">{event.name}</h2>
-            <p className="text-lg mt-2">{event.description}</p>
-            <p className="text-lg mt-2">{event.time}</p>
-            <p>{event.location}</p>
-            <p>
-              From {event.startTime} to {event.endTime}
-            </p>
-            <div className="flex gap-2 mt-4">
-              {event.tags.map((tag, i) => (
-                <span key={i} className="bg-gray-300  px-2 rounded">
-                  {tag}
-                </span>
-              ))}
+          <Link href={`/event/${params.name}/${event.name}`}>
+            <div
+              key={i}
+              className="p-4 bg-gray-200 rounded-lg mt-4 w-4/5 hover:bg-gray-300 transition duration-300 ease-in-out"
+            >
+              <h2 className="text-2xl">{event.name}</h2>
+              <p className="text-lg mt-2">{event.description}</p>
+              <p className="text-lg mt-2">{event.time}</p>
+              <p>{event.location}</p>
+              <p>
+                From {event.startTime} to {event.endTime}
+              </p>
+              <div className="flex gap-2 mt-4">
+                {event.tags.map((tag, i) => (
+                  <span key={i} className="bg-gray-300  px-2 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="w-1/3">

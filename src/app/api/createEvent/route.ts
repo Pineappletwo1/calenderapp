@@ -55,6 +55,14 @@ export async function POST(Req: Request, Res: Response) {
           startTime: startTime,
           endTime: endTime,
         };
+        let duplicate = foundDay.events.find(
+          (a) =>
+            a.name.toLowerCase().trim().trimEnd() ===
+            eventName.toLowerCase().trim().trimEnd()
+        );
+        if (duplicate !== undefined) {
+          return Response.json({ text: "This event already exists" });
+        }
         foundDay.events.push(event);
         await foundDay.save();
         return Response.json({ text: "Event created successfully" });
