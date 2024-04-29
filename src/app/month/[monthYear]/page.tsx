@@ -89,9 +89,9 @@ const Month: FC = async ({ params }) => {
               className="p-2 w-auto h-20 bg-gray-100 rounded-lg flex items-center justify-center font-bold hover:bg-gray-200 hover:scale-105 transition-transform relative"
             >
               {day[0]}
-              <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
+              {/* <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
                 <span>!</span>
-              </span>
+              </span> */}
             </div>
           </Link>
         ))}

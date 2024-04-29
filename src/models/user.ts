@@ -13,6 +13,10 @@ const UserSchema = new Schema({
   image: {
     type: String,
   },
+  tags: {
+    type: Array,
+    default: [],
+  },
 });
 
 const TyeeCalendarUser = models.User || model("User", UserSchema);

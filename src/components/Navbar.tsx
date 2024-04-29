@@ -10,6 +10,25 @@ export default function NavBar() {
   const [active, setActive] = useState(false);
   const [selection, setSelection] = useState(false);
   const [show, setShow] = useState(false);
+  let day = new Date();
+  let month = day.getMonth();
+  let year = day.getFullYear();
+  let numToMonth = {
+    0: "Jan",
+    1: "Feb",
+    2: "Mar",
+    3: "Apr",
+    4: "May",
+    5: "Jun",
+    6: "Jul",
+    7: "Aug",
+    8: "Sep",
+    9: "Oct",
+    10: "Nov",
+    11: "Dec",
+  };
+  month = numToMonth[month];
+  let date = `${month} ${day.getDate()} ${year}`;
 
   return (
     <nav className="flex gap-4 p-4 px-6 items-center shadow-lg">
@@ -31,7 +50,7 @@ export default function NavBar() {
                 Dashboard
               </h1>
             </Link>
-            <Link href="/day">
+            <Link href={date}>
               <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
                 Current Day
               </h1>
