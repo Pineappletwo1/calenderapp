@@ -1,5 +1,6 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
+import DashboardEvents from "@/components/DashboardEvents";
 
 export default async function featuredevents() {
   const numToMonth = {
@@ -19,32 +20,23 @@ export default async function featuredevents() {
   let asdf = numToMonth[new Date().getMonth()] + " " + new Date().getFullYear();
 
   await connectToDataBase();
-  const days = await TyeeCalendarDay.find({
+  let days = await TyeeCalendarDay.find({
     monthYear: asdf,
+  });
+
+  days = days.map((day) => {
+    return {
+      dayOfWeek: day.dayOfWeek,
+      dayName: day.dayName,
+      events: day.events,
+      monthYear: day.monthYear,
+    };
   });
 
   return (
     <div className="p-6">
-      {days.map((day) => {
-        return (
-          <div className="mt-4">
-            <h1 className="text-2xl mb-2">{day.dayName}</h1>
-            {day.events.length === 0 && <p>No events</p>}
-            {day.events.map((event) => {
-              return (
-                <div>
-                  <h2>{event.name}</h2>
-                  <p>{event.description}</p>
-                  <p>{event.location}</p>
-                  <p>{event.startTime}</p>
-                  <p>{event.endTime}</p>
-                  <p>{event.tags.join(", ")}</p>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+      <h1 className="text-5xl mb-6">Dashboard</h1>
+      <DashboardEvents days={days} />
     </div>
   );
 }

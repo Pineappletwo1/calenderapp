@@ -17,6 +17,10 @@ const UserSchema = new Schema({
     type: Array,
     default: [],
   },
+  starred: {
+    type: Array,
+    default: []
+  }
 });
 
 const TyeeCalendarUser = models.User || model("User", UserSchema);
