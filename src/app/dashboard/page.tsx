@@ -1,6 +1,9 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
 import DashboardEvents from "@/components/DashboardEvents";
+import TyeeCalendarUser from "@/models/user";
+import { getServerSession } from "next-auth";
+import connectToDatabase from "@/lib/db";
 
 export default async function featuredevents() {
   const numToMonth = {
@@ -32,11 +35,14 @@ export default async function featuredevents() {
       monthYear: day.monthYear,
     };
   });
-
+  const session = await getServerSession();
+  const user = session
+    ? await TyeeCalendarUser.findOne({ email: session.user.email })
+    : null;
   return (
     <div className="p-6">
       <h1 className="text-5xl mb-6">Dashboard</h1>
-      <DashboardEvents days={days} />
+      <DashboardEvents days={days} tags={user?.tags}/>
     </div>
   );
 }

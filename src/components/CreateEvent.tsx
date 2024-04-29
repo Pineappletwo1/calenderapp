@@ -46,6 +46,7 @@ export default function CreateEvent({ day }) {
     });
     const data = await response.json();
     alert(data.text);
+    window.location.reload();
   }
 
   return (

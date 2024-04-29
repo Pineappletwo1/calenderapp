@@ -1,8 +1,15 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
+import TyeeCalendarUser from "@/models/user";
+import { getServerSession } from "next-auth";
+import Tag from "@/components/Tag";
 
 export default async function Event({ params }) {
   await connectToDataBase();
+  const session = await getServerSession();
+  const user = session
+    ? await TyeeCalendarUser.findOne({ email: session.user.email })
+    : null;
   const day = await TyeeCalendarDay.findOne({
     dayName: params.day.replaceAll("%20", " "),
   });
@@ -32,9 +39,13 @@ export default async function Event({ params }) {
           </p>
           <div className="flex gap-2 mt-4">
             {event.tags.map((tag, i) => (
-              <span key={i} className="bg-gray-300  px-2 rounded text-xl">
-                {tag}
-              </span>
+              <Tag
+                key={i}
+                tag={tag}
+                i={i}
+                tags={user ? user.tags : []}
+                userExists={user ? true : false}
+              />
             ))}
           </div>
         </div>

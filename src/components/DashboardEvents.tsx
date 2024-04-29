@@ -2,13 +2,12 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function Events({ days }) {
+export default function Events({ days, tags }) {
   const [allEvents, setAllEvents] = useState(true);
   const [starredEvents, setStarredEvents] = useState(true);
   const [showTags, setShowTags] = useState(true);
-  let showDays = days.filter(
-    (day) => allEvents || (day.star && starredEvents) || (day.tag && showTags)
-  );
+  console.log(tags.includes("#sleep"));
+
   return (
     <div>
       <div className="flex ">
@@ -31,12 +30,17 @@ export default function Events({ days }) {
           onChange={() => setShowTags(!showTags)}
         />
       </div>
-      {showDays.map((day, index) => {
+      {days.map((day, index) => {
         return (
           <div className="mt-4" key={index}>
             <h1 className="text-3xl mb-2">{day.dayName}</h1>
             {day.events.length === 0 && <p>No events</p>}
             {day.events.map((event) => {
+              if (
+                !(allEvents || (starredEvents && tags.some(r=> event.tags.includes(r))))
+              ) {
+                return null;
+              }
               return (
                 <div className="bg-gray-200 py-1 px-2 text-lg rounded mt-4 w-1/2 hover:bg-gray-300 transition-all duration-300">
                   <Link href={`/event/${day.dayName}/${event.name}`}>
