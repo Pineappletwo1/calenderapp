@@ -44,7 +44,7 @@ export default function NavBar() {
           </h1>
         </Link>
         {show && (
-          <div className="absolute top-full flex flex-col bg-white">
+          <div className="absolute top-full flex flex-col bg-white z-50">
             <Link href="/dashboard">
               <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
                 Dashboard

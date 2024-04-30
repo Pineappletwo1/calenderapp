@@ -17,7 +17,7 @@ const Month: FC = async ({ params }) => {
     : null;
   const date = new Date();
   let daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-  
+
   const monthToNum = {
     Jan: 0,
     Feb: 1,
@@ -60,7 +60,13 @@ const Month: FC = async ({ params }) => {
     table.push(["", ""]);
   }
   for (let day of days) {
-    table.push([day.dayName.split(" ")[1], day.dayName]);
+    table.push([day.dayName.split(" ")[1], day.dayName, day.events]);
+    console.log(
+      day.events.some((event) =>
+        event.tags.some((tag) => user.tags.includes(tag))
+      )
+    );
+    console.log(day.events);
   }
 
   return (
@@ -95,10 +101,17 @@ const Month: FC = async ({ params }) => {
               {day[0]}
               {day &&
                 user &&
-                day.events &&
+                day[2] &&
                 user.tags &&
-                day.events.some((event) =>
-                  event.tags.some((tag) => user.tags.includes(tag))
+                day[2].some((event) =>
+                  event.tags.some(
+                    (tag) =>
+                      user.tags.includes(tag) ||
+                      user.starred.some(
+                        (star) =>
+                          star.day === day[1] && star.eventName === event.name
+                      )
+                  )
                 ) && (
                   <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
                     <span>!</span>

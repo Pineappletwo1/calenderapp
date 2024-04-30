@@ -42,7 +42,7 @@ export default async function featuredevents() {
   return (
     <div className="p-6">
       <h1 className="text-5xl mb-6">Dashboard</h1>
-      <DashboardEvents days={days} tags={user?.tags}/>
+      <DashboardEvents days={days} tags={user?.tags} starred={user?.starred} />
     </div>
   );
 }

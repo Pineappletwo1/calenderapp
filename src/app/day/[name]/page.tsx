@@ -4,6 +4,7 @@ import TyeeCalendarUser from "@/models/user";
 import { getServerSession } from "next-auth";
 import CreateEvent from "@/components/CreateEvent";
 import Link from "next/link";
+import Star from "@/components/Star";
 
 export default async function Day({ params }) {
   await connectToDataBase();
@@ -34,8 +35,18 @@ export default async function Day({ params }) {
           <Link href={`/event/${params.name}/${event.name}`}>
             <div
               key={i}
-              className="p-4 bg-gray-200 rounded-lg mt-4 w-4/5 hover:bg-gray-300 transition duration-300 ease-in-out"
+              className="p-4 bg-gray-200 rounded-lg mt-4 w-4/5 hover:bg-gray-300 transition duration-300 ease-in-out relative"
             >
+              <Star
+                day={day.dayName}
+                eventName={event.name}
+                set={user?.starred?.some(
+                  (e) =>
+                    e.day == params.name.replaceAll("%20", " ") &&
+                    e.eventName == event.name
+                )}
+                className="text-4xl text-yellow-400 absolute top-2 right-4"
+              />
               <h2 className="text-2xl">{event.name}</h2>
               <p className="text-lg mt-2">{event.description}</p>
               <p className="text-lg mt-2">{event.time}</p>

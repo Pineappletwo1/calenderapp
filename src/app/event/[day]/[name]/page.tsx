@@ -3,6 +3,7 @@ import TyeeCalendarDay from "@/models/day";
 import TyeeCalendarUser from "@/models/user";
 import { getServerSession } from "next-auth";
 import Tag from "@/components/Tag";
+import Star from "@/components/Star";
 
 export default async function Event({ params }) {
   await connectToDataBase();
@@ -24,14 +25,28 @@ export default async function Event({ params }) {
   if (!event) {
     return <div>404 Event not found</div>;
   }
+
   return (
     <div className="p-6 flex">
       <div className="w-2/3">
         <h1 className="text-2xl mt-4">
           {day.dayOfWeek}, {day.dayName}
         </h1>
+
         <div className="py-4">
-          <h2 className="text-4xl">{event.name}</h2>
+          <div className="flex ">
+            <h2 className="text-4xl">{event.name}</h2>
+            <Star
+              day={day.dayName}
+              eventName={event.name}
+              set={user?.starred?.some(
+                (e) =>
+                  e.day == params.day.replaceAll("%20", " ") &&
+                  e.eventName == params.name.replaceAll("%20", " ")
+              )}
+              className="text-4xl text-yellow-400 ml-4"
+            />
+          </div>
           <p className="text-xl mt-2">{event.description}</p>
           <p className="text-xl mt-4">{event.location}</p>
           <p>

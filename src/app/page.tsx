@@ -10,8 +10,10 @@ export default function Home() {
       <p>The better Calender</p>
 
       
-
-
+      <p className="p-6 text-lg">
+             We all know the biggest problem with planners is that you forget to
+             check them, so we&apos;ll send you reminders. Computer, phone, we know you&apos;re on one of them.
+          </p>
 
     </main>
   );
