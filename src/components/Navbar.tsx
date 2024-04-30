@@ -28,7 +28,7 @@ export default function NavBar() {
     11: "Dec",
   };
   month = numToMonth[month];
-  let date = `${month} ${day.getDate()} ${year}`;
+  let date = `/day/${month} ${day.getDate()} ${year}`;
 
   return (
     <nav className="flex gap-4 p-4 px-6 items-center shadow-lg">
@@ -55,7 +55,7 @@ export default function NavBar() {
                 Current Day
               </h1>
             </Link>
-            <Link href="/subscribe-tags">
+            <Link href="/tag-management">
               <h1 className="text-xl py-2 px-4 hover:bg-gray-200 rounded">
                 Tag Management
               </h1>

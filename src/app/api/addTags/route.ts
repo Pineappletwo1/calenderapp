@@ -3,7 +3,8 @@ import TyeeCalendarUser from "@/models/user";
 import { getServerSession } from "next-auth";
 
 export async function POST(req: Request, Res: Response) {
-  const { tag, tagStatus } = await req.json();
+  const data = await req.json();
+  console.log(data.tags);
   await connectToDataBase();
   const session = await getServerSession();
   if (!session) {
@@ -13,12 +14,11 @@ export async function POST(req: Request, Res: Response) {
   if (!user) {
     return Response.json({ text: "User not found" });
   }
-  if (tagStatus == true) {
-    if (!user.tags.includes(tag)) user.tags.push(tag);
-  } else {
-    user.tags = user.tags.filter((t) => t !== tag);
-  }
+  if (!data.tags) return Response.json({ text: "No tags provided" });
+  data.tags.forEach((element) => {
+    if (!user.tags.includes(element)) user.tags.push(element);
+  });
   await user.save();
   console.log(user.tags);
-  return Response.json({ text: "Tag set" });
+  return Response.json({ text: "Tags set" });
 }

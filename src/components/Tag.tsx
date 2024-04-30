@@ -22,7 +22,7 @@ export default function Tag({ tag, i, tags, userExists }) {
   return (
     <span
       key={i}
-      className={`bg-gray-300  px-2 rounded text-xl ${isSet && "bg-green-300"}`}
+      className={`bg-gray-300  px-2 rounded text-xl ${isSet && "bg-green-300"} cursor-pointer`}
       onClick={() => {
         if (userExists) {
           setTag(!isSet);

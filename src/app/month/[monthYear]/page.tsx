@@ -1,6 +1,8 @@
 import { connectToDataBase } from "@/lib/db";
 import TyeeCalendarDay from "@/models/day";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import TyeeCalendarUser from "@/models/user";
 const Month: FC = async ({ params }) => {
   await connectToDataBase();
   const days = await TyeeCalendarDay.find({
@@ -9,9 +11,13 @@ const Month: FC = async ({ params }) => {
   if (days.length === 0) {
     return <div>404 Month not found</div>;
   }
-  days.forEach((day) => console.log(day.dayName));
+  const session = await getServerSession();
+  const user = session
+    ? await TyeeCalendarUser.findOne({ email: session?.user?.email })
+    : null;
   const date = new Date();
   let daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+  
   const monthToNum = {
     Jan: 0,
     Feb: 1,
@@ -57,8 +63,6 @@ const Month: FC = async ({ params }) => {
     table.push([day.dayName.split(" ")[1], day.dayName]);
   }
 
-  
-
   return (
     <div className="p-4 px-6">
       <div className="flex items-center">
@@ -83,15 +87,23 @@ const Month: FC = async ({ params }) => {
           </div>
         ))}
         {table.map((day, index) => (
-          <Link href={day[0] === "" ? "" : `/day/${day[1]}`}>
+          <Link href={day[0] === "" ? "" : `/day/${day[1]}`} key={index}>
             <div
               key={index}
               className="p-2 w-auto h-20 bg-gray-100 rounded-lg flex items-center justify-center font-bold hover:bg-gray-200 hover:scale-105 transition-transform relative"
             >
               {day[0]}
-              {/* <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
-                <span>!</span>
-              </span> */}
+              {day &&
+                user &&
+                day.events &&
+                user.tags &&
+                day.events.some((event) =>
+                  event.tags.some((tag) => user.tags.includes(tag))
+                ) && (
+                  <span className="absolute top-2 right-2 bg-blue-400 p-4 rounded-full font-mono h-4 w-4 flex items-center justify-center text-white text-center">
+                    <span>!</span>
+                  </span>
+                )}
             </div>
           </Link>
         ))}
