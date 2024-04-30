@@ -1,59 +1,73 @@
 import Image from "next/image";
 
 export default function Home() {
+  return (
+    <main className=" text-gray-700">
+      <div className="hero p-10 rounded-lg shadow-md flex items-center "> 
+        <div>
+          <h1 className="text-5xl mb-4 text-blue-500">Tyee Calender</h1>
+          <p className="text-2xl mb-4">The better Tyee Planner</p>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded">
+            Get Started
+          </button>
+        </div>
+        <Image
+          src="https://i.ibb.co/mNhYwcQ/logo-2.png"
+          alt="Tyee Calender"
+          height={500}
+          width={500}
+          className="ml-auto"
+        />
+      </div>
 
-  return(
-    <main>
-
-      <h1>Tyee Calender</h1>
-
-      <p>The better Calender</p>
-
-      
-      <p className="p-6 text-lg">
-             We all know the biggest problem with planners is that you forget to
-             check them, so we&apos;ll send you reminders. Computer, phone, we know you&apos;re on one of them.
+      <div className="section2 p-10 rounded-lg shadow-md flex flex-row-reverse items-center mb-10 ">
+        <div>
+          <h1 className="text-3xl mb-4 text-blue-500">Get Push Notifications</h1>
+          <p className="text-xl">
+            We all know the biggest problem with planners is that you forget to check them, so we&apos;ll send you reminders. Computer, phone, we know you&apos;re on one of them.
           </p>
+        </div>
+        <Image
+          src="https://i.ibb.co/cDC1PLh/OIG4-removebg-preview.png"
+          alt="Tyee Calender"
+          height={500}
+          width={500}
+          className="mr-auto"
+        />
+      </div>
 
+      <div className="section3 p-10 rounded-lg shadow-md flex items-center mb-10 ">
+        <div>
+          <h1 className="text-3xl mb-4 text-blue-500">Tag Events and Clubs</h1>
+          <p className="text-xl">
+            There is so much happening at Tyee, and we want to make sure you can keep track of what you care about the most. Follow clubs like TPCC, classes like Chinese 2, to keep track of everything!
+          </p>
+        </div>
+        <Image
+          src="https://i.ibb.co/YLLSMtt/OIG4-1-removebg-preview.png"
+          alt="Tyee Calender"
+          height={500}
+          width={500}
+          className="ml-auto"
+        />
+      </div>
+
+      <div className="section4 p-10 rounded-lg shadow-md flex items-center mb-10 ">
+        <Image
+          src="https://i.ibb.co/dknmZQc/OIG3-removebg-preview.png"
+          alt="Tyee Calender"
+          height={500}
+          width={500}
+          className="mr-auto"
+        />
+        <div>
+          <h1 className="text-3xl mb-4 text-blue-500">Big Community</h1>
+          <p className="text-xl">
+            Don&apos;t forget that there are hundreds of other students at Tyee, and
+            they all contribute to the calendar and ensure that it&apos;s up to date. Join the community and help us make the calendar better!
+          </p>
+        </div>
+      </div>
     </main>
   );
 }
-
-// import Image from "next/image";
-
-// export default function Home() {
-//   return (
-//     <main className="p-8">
-//       <h1 className="text-6xl mt-6 font-normal">Tyee Calendar</h1>
-//       <h2 className="text-3xl mt-6 font-normal">
-//         Tyee Calendar, the better Tyee planner that people will use.
-//       </h2>
-//       <div className="grid grid-cols-3 gap-6 mt-10">
-//         <div className=" shadow-lg">
-//           <h1 className="text-2xl bg-gray-100 p-6">Get Push Notifications</h1>
-//           <p className="p-6 text-lg">
-//             We all know the biggest problem with planners is that you forget to
-//             check them, so we&apos;ll send you reminders. Computer, phone, we know
-//             you&apos;re on one of them.
-//           </p>
-//         </div>
-//         <div className=" shadow-lg">
-//           <h1 className="text-2xl bg-gray-100 p-6">Tag Events and Clubs</h1>
-//           <p className="p-6 text-lg">
-//             There is so much happening at Tyee, and we want to make sure you can
-//             keep track of what you care about the most. Follow clubs like TPCC,
-//             classes like Chinese 2, to keep track of everything!
-//           </p>
-//         </div>
-//         <div className=" shadow-lg">
-//           <h1 className="text-2xl bg-gray-100 p-6">Big Tyee Community</h1>
-//           <p className="p-6 text-lg">
-//             Don&apos;t forget that there are hundreds of other students at Tyee, and
-//             they all contribute to the calendar and ensure that it&apos;s up to date.
-//             Join the community and help us make the calendar better!
-//           </p>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
