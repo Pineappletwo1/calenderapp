@@ -8,6 +8,8 @@ export default function CommentSection({
   day,
   eventName,
 }) {
+  const inputRef = useRef(null);
+
   const { data: session } = useSession();
   if (!session) {
     return (
@@ -16,7 +18,6 @@ export default function CommentSection({
       </div>
     );
   }
-  const inputRef = useRef(null);
   async function comment() {
     const data = await fetch("/api/addComment", {
       method: "POST",
