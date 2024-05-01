@@ -38,10 +38,10 @@ export default function Events({ days, tags, starred }) {
               if (
                 !(
                   allEvents ||
-                  (showTags && tags.some((r) => event.tags.includes(r))) ||
+                  (showTags && tags?.some((r) => event?.tags?.includes(r))) ||
                   (starredEvents &&
                     starred?.some(
-                      (e) => e.day === day.dayName && e.eventName === event.name
+                      (e) => e?.day === day?.dayName && e?.eventName === event?.name
                     ))
                 )
               ) {
