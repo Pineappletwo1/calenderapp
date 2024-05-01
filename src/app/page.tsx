@@ -71,7 +71,7 @@ export default function Home() {
           className="mr-auto"
         />
         <div>
-          <h1 className="text-3xl mb-4 text-blue-500">Big Community</h1>
+          <h1 className="text-3xl mb-4 text-blue-500 ml-4">Big Community</h1>
           <p className="text-xl">
             Don&apos;t forget that there are hundreds of other students at Tyee,
             and they all contribute to the calendar and ensure that it&apos;s up
