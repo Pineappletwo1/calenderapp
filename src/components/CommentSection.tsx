@@ -39,12 +39,12 @@ export default function CommentSection({
   }
   return (
     <div className={className}>
-      <h2 className="text-4xl">Comments</h2>
+      <h2 className="text-4xl mb-2">Comments</h2>
       {comments.map((comment, index) => {
         return (
           comment.name &&
           comment.comment && (
-            <div key={index} className="bg-gray-200 p-2 rounded mt-2">
+            <div key={index} className="bg-gray-200 p-2 rounded mt-1">
               <h3 className="text-gray-500">{comment.name}</h3>
               <p className="text-xl mt-2">{comment.comment}</p>
             </div>
