@@ -28,7 +28,7 @@ export default function NavBar() {
     11: "Dec",
   };
   month = numToMonth[month];
-  let date = `/day/${month} ${day.getDate()} ${year}`;
+  let date = `/day/${month} ${day.getDate() < 10 && "0"}${day.getDate()} ${year}`;
 
   return (
     <nav className="flex gap-4 p-4 px-6 items-center shadow-lg">
