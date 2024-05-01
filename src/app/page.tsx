@@ -72,7 +72,7 @@ export default function Home() {
         />
         <div>
           <h1 className="text-3xl mb-4 text-blue-500 ml-4">Big Community</h1>
-          <p className="text-xl">
+          <p className="text-xl ml-4">
             Don&apos;t forget that there are hundreds of other students at Tyee,
             and they all contribute to the calendar and ensure that it&apos;s up
             to date. Join the community and help us make the calendar better!
