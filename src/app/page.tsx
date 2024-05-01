@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Home() {
   return (
@@ -7,7 +10,7 @@ export default function Home() {
         <div>
           <h1 className="text-5xl mb-4 text-blue-500">Tyee Calender</h1>
           <p className="text-2xl mb-4">The better Tyee Planner</p>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded" onClick={() => signIn()}>
             Get Started
           </button>
         </div>

@@ -4,7 +4,14 @@ import { useEffect } from "react";
 export default function NotiHandler() {
   useEffect(() => {
     Notification.requestPermission().then((permission) => {
-      //make it send a notification every 30 minutes even when the tab is closed
+      if (permission === "granted") {
+        setInterval(() => {
+          //send notification to check planner
+          new Notification("Check your planner!", {
+            body: "Don't forget to check your planner!",
+          });
+        }, 1000 * 60 * 30);
+      }
     });
   }, []);
   return null;

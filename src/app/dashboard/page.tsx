@@ -21,11 +21,23 @@ export default async function featuredevents() {
     11: "Dec",
   };
   let asdf = numToMonth[new Date().getMonth()] + " " + new Date().getFullYear();
+  let nextMonth;
+  if (new Date().getMonth() < 10) {
+    nextMonth =
+      numToMonth[new Date().getMonth() + 1] + " " + new Date().getFullYear();
+  }
+  if (new Date().getMonth() === 11) {
+    nextMonth = numToMonth[0] + " " + (new Date().getFullYear() + 1);
+  }
 
   await connectToDataBase();
   let days = await TyeeCalendarDay.find({
     monthYear: asdf,
   });
+  let nextDays = await TyeeCalendarDay.find({
+    monthYear: nextMonth,
+  });
+  days = days.concat(nextDays);
 
   days = days.map((day) => {
     return {

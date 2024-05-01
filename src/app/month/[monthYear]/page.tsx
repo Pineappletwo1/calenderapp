@@ -46,6 +46,14 @@ const Month: FC = async ({ params }) => {
     10: "Nov",
     11: "Dec",
   };
+  let nextMonth;
+  if (new Date().getMonth() < 10) {
+    nextMonth =
+      numToMonth[new Date().getMonth() + 1] + " " + new Date().getFullYear();
+  }
+  if (new Date().getMonth() === 11) {
+    nextMonth = numToMonth[0] + " " + (new Date().getFullYear() + 1);
+  }
 
   let startDay = new Date(
     parseInt(days[0].monthYear.split(" ")[1]),
@@ -63,7 +71,7 @@ const Month: FC = async ({ params }) => {
     table.push([day.dayName.split(" ")[1], day.dayName, day.events]);
     console.log(
       day.events.some((event) =>
-        event.tags.some((tag) => user.tags.includes(tag))
+        event.tags.some((tag) => user?.tags?.includes(tag))
       )
     );
     console.log(day.events);
@@ -76,7 +84,7 @@ const Month: FC = async ({ params }) => {
           Upcoming Events
         </h1>
         <Link
-          href={`/month/${days[0].monthYear.split(" ")[0]}`}
+          href={nextMonth || "/month"}
           className="ml-auto text-2xl px-4 py-2 bg-blue-500 text-white  rounded h-auto"
         >
           Next Month
@@ -102,12 +110,12 @@ const Month: FC = async ({ params }) => {
               {day &&
                 user &&
                 day[2] &&
-                user.tags &&
+                user?.tags &&
                 day[2].some((event) =>
                   event.tags.some(
                     (tag) =>
-                      user.tags.includes(tag) ||
-                      user.starred.some(
+                      user?.tags.includes(tag) ||
+                      user?.starred.some(
                         (star) =>
                           star.day === day[1] && star.eventName === event.name
                       )

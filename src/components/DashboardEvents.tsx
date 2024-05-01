@@ -6,7 +6,6 @@ export default function Events({ days, tags, starred }) {
   const [allEvents, setAllEvents] = useState(true);
   const [starredEvents, setStarredEvents] = useState(true);
   const [showTags, setShowTags] = useState(true);
-  console.log(tags.includes("#sleep"));
 
   return (
     <div>
@@ -49,7 +48,10 @@ export default function Events({ days, tags, starred }) {
                 return null;
               }
               return (
-                <div className="bg-gray-200 py-1 px-2 text-lg rounded mt-4 w-1/2 hover:bg-gray-300 transition-all duration-300" key={index}>
+                <div
+                  className="bg-gray-200 py-1 px-2 text-lg rounded mt-4 w-1/2 hover:bg-gray-300 transition-all duration-300"
+                  key={index}
+                >
                   <Link href={`/event/${day.dayName}/${event.name}`}>
                     <h2>
                       {event.name} - From {event.startTime} to {event.endTime}.

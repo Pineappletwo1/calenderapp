@@ -4,6 +4,7 @@ import TyeeCalendarUser from "@/models/user";
 import { getServerSession } from "next-auth";
 import Tag from "@/components/Tag";
 import Star from "@/components/Star";
+import CommentSection from "@/components/CommentSection";
 
 export default async function Event({ params }) {
   await connectToDataBase();
@@ -65,7 +66,14 @@ export default async function Event({ params }) {
           </div>
         </div>
       </div>
-      <div className="w-1/3"></div>
+      <div className="w-1/3">
+        <CommentSection
+          day={day.dayName}
+          eventName={event.name}
+          comments={event.comments || []}
+          className="mt-4 p-6 shadow-large rounded "
+        />
+      </div>
     </div>
   );
 }
