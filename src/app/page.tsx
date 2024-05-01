@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -6,11 +6,14 @@ import { signIn, signOut, useSession } from "next-auth/react";
 export default function Home() {
   return (
     <main className=" text-gray-700">
-      <div className="hero p-10 rounded-lg shadow-md flex items-center "> 
+      <div className="hero p-10 rounded-lg shadow-md flex items-center ">
         <div>
           <h1 className="text-5xl mb-4 text-blue-500">Tyee Calender</h1>
           <p className="text-2xl mb-4">The better Tyee Planner</p>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded" onClick={() => signIn()}>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 text-lg rounded"
+            onClick={() => signIn()}
+          >
             Get Started
           </button>
         </div>
@@ -25,9 +28,11 @@ export default function Home() {
 
       <div className="section2 p-10 rounded-lg shadow-md flex flex-row-reverse items-center mb-10 ">
         <div>
-          <h1 className="text-3xl mb-4 text-blue-500">Get Push Notifications</h1>
+          <h1 className="text-3xl mb-4 text-blue-500">Get Reminders</h1>
           <p className="text-xl">
-            We all know the biggest problem with planners is that you forget to check them, so we&apos;ll send you reminders. Computer, phone, we know you&apos;re on one of them.
+            We all know the biggest problem with planners is that you forget to
+            check them, so we&apos;ll send you reminders. Keep the tab open, and
+            every 30 minutes you&apos; be reminded to check the calendar.
           </p>
         </div>
         <Image
@@ -43,7 +48,9 @@ export default function Home() {
         <div>
           <h1 className="text-3xl mb-4 text-blue-500">Tag Events and Clubs</h1>
           <p className="text-xl">
-            There is so much happening at Tyee, and we want to make sure you can keep track of what you care about the most. Follow clubs like TPCC, classes like Chinese 2, to keep track of everything!
+            There is so much happening at Tyee, and we want to make sure you can
+            keep track of what you care about the most. Follow clubs like TPCC,
+            classes like Chinese 2, to keep track of everything!
           </p>
         </div>
         <Image
@@ -66,8 +73,9 @@ export default function Home() {
         <div>
           <h1 className="text-3xl mb-4 text-blue-500">Big Community</h1>
           <p className="text-xl">
-            Don&apos;t forget that there are hundreds of other students at Tyee, and
-            they all contribute to the calendar and ensure that it&apos;s up to date. Join the community and help us make the calendar better!
+            Don&apos;t forget that there are hundreds of other students at Tyee,
+            and they all contribute to the calendar and ensure that it&apos;s up
+            to date. Join the community and help us make the calendar better!
           </p>
         </div>
       </div>
